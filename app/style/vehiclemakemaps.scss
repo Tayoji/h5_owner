@@ -1,0 +1,27 @@
+.vehiclemakemaps-items{
+  width: 100%;
+  height: 100%;
+  overflow: scroll;
+
+}
+.vehiclemakemaps-item{
+  width: 25%;
+  margin: 0px;
+  height: 90px;
+  float: left;
+  padding: 0px;
+  text-align: center;
+}
+.vehiclemakemaps-item img{
+  width: 60px;
+  height: 60px;
+  padding: 0px;
+  margin: 5px calc((100% - 60px)/2);
+  display: block;
+}
+.vehiclemakemaps-item p{
+  font-size: 14px;
+  margin: 60px auto 5px auto;
+
+}
+

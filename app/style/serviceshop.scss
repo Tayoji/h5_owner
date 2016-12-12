@@ -1,0 +1,83 @@
+.group-body{
+  margin-top: -20px;
+  margin-bottom: -20px;
+}
+.serviceshop-header{
+  margin: 0px;
+  padding: 0px;
+  height: 200px;
+  width: 100%;
+  position: relative;
+}
+.serviceshop-header-img{
+  width: 100%;
+  position: absolute;
+  height: 200px;
+  margin: 0px;
+  padding: 0px;
+
+
+}
+.serviceshop-header-info{
+  width: 100%;
+  position: absolute;
+  background-color: rgba(0,0,0,0.5);
+  margin: 0px;
+  height: 55px;
+  top: 145px;
+
+}
+.serviceshop-header-info p{
+  margin: 0px;
+  color: #ffffff;
+
+}
+.item-title{
+  font-size: 15px;
+  color: #999999;
+}
+.item-subtitle{
+  font-size: 14px;
+  color: #333333;
+}
+.list-icon{
+  width: 17px;
+  height: 17px;
+  padding: 0px;
+  margin: 0px;
+}
+.serviceShop-star div{
+  width: 72px;
+  display: block;
+  float: right;
+  margin-top: 4.5px;
+  margin-right: -5px;
+}
+.serviceShop-star p{
+  display: block;
+  margin: 0px;
+  float: right;
+  color: #ff9900;
+  font-size: 14px;
+
+}
+.serviceShop-serviceFacility{
+  margin-top: 10px;
+  float: left;
+}
+.serviceShop-serviceFacility img{
+  padding: 0px;
+  width: 15px;
+  height: 15px;
+  float: left;
+  display: block;
+  margin: 0px;
+
+}
+.serviceShop-serviceFacility p{
+  font-size: 10px;
+  display: block;
+  float: left;
+  margin: 0px 10px 0px 5px;
+
+}

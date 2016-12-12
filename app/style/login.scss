@@ -1,0 +1,42 @@
+.login-navbar{
+  background-color: #fff;
+}
+.login-group{
+  background-color: #000000;
+}
+#codebutton{
+  color: #F43146;
+  border-color: #F43146;
+  height: 25px;
+  border-radius: 12.5px;
+  border:1px solid;
+  font-size: 12px;
+  line-height: 23px;
+  padding: 0px 10px;
+}
+
+#codebutton:disabled{
+    color: #cccccc;
+    border-color: #cccccc;
+}
+.login-button{
+  background-color: #F43146;
+  width: calc(100% - 30px);
+  margin-left: 15px;
+  margin-right: 15px;
+  color: #FFFFFF;
+  border-radius: 5px;
+  margin-top: 30px;
+  margin-bottom: 0px;
+}
+.login-button:disabled{
+  background-color:#cccccc;
+}
+.login-prompt{
+  margin: 10px 15px;
+  padding: 0px;
+  font-size: 12px;
+  line-height: 12px;
+  color: #cccccc;
+
+}

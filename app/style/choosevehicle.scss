@@ -1,0 +1,31 @@
+.groupheader{
+  margin-top: 0px;
+  height: 30px;
+}
+.vehicle-group header{
+  margin-bottom: 20px;
+  margin-top: -20px;
+}
+.vehicle-makes{
+  width: 100%;
+}
+
+.vehicle-makes , .vehicle-models,.vehicle-submodels{
+  height: 100%;
+  top: 0px;
+  position: absolute;
+  overflow: scroll;
+  border: 1px solid #f0f0f0;
+  background-color: rgb(242,242,242);
+}
+.vehicle-models{
+  width: calc(100% - 60px);
+  left: 60px;
+}
+.vehicle-submodels{
+  width: calc(100% - 120px);
+  left: 120px;
+}
+.vehicle-list-header{
+  margin-top: 0px;
+}

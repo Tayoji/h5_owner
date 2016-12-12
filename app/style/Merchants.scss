@@ -1,0 +1,134 @@
+.merchants-list{
+  list-style-type: none;
+  padding: 0px;
+  background-color: white;
+  margin: 0px;
+  overflow: hidden;
+  width: 100%;
+
+}
+.merchants-list-li{
+  margin: 0px;
+  padding: 0px;
+  list-style-type:none；
+}
+.merchants-header{
+  height: 88px;
+  width: 100%;
+}
+
+.merchants-con{
+  height: calc(100% - 88px);
+  width: 100%;
+  overflow: scroll;
+  top: 88px;
+  position: absolute;
+}
+.merchants-options{
+  width: 100%;
+  height: 44px;
+  border-top: 1px solid rgb(232,232,232);
+  border-bottom: 1px solid rgb(232,232,232);
+  background-color: white;
+
+}
+//.merchants-searbar{
+//  height: 44px;
+//  width: 100%;
+//  margin: 0px;
+//  background-color: white;
+//
+//}
+//.merchants-searbar input{
+//  height: 28px;
+//  border-radius: 5px;
+//  background-color: rgb(238,238,238);
+//  border: 1px solid rgb(232,232,232);
+//  margin: 8px;
+//  width: calc(100% - 16px);
+//}
+//.merchants-searbar-div1{
+//  position: absolute;
+//  top: 14.5px;
+//  width: 100%;
+//  height: 15px;
+//  line-height: 15px;
+//  text-align: center;
+//  align-items: center;
+//
+//
+//}
+//.merchants-searbar-div2{
+//  display: flex;
+//}
+//.merchants-searbar img{
+//  width: 15px;
+//  height: 15px;
+//  padding: 0px;
+//  display: inline;
+//  margin: 0px 2px 0px auto;
+//  float: left;
+//
+//}
+//.merchants-searbar p{
+//  font-size: 14px;
+//  color: rgb(204,204,204);
+//  display: inline;
+//  margin: 0px auto 0px 2px;
+//  line-height: 14px;
+//  padding: 0px;
+//  float: left;
+//
+//}
+.merchants-option{
+  width: 25%;
+  margin: 10px 0px;
+  float: left;
+  text-align: center;
+  border-right: 1px solid rgb(232,232,232);
+}
+.merchants-option div{
+  display: flex;
+  margin: auto;
+}
+.merchants-option p{
+  font-size: 15px;
+  color: #333333;
+  margin: auto 2px auto auto;
+  float: left;
+  display: block;
+}
+.merchants-option img{
+  width: 12px;
+  height: 7px;
+  padding: 0px;
+  margin: auto auto auto 2px;
+  float: left;
+  display: block;
+}
+.merchants-address{
+  width: 100%;
+  display: block;
+  text-align: center;
+}
+.merchants-address div{
+  display: flex;
+  margin: 5px auto;
+}
+.merchants-address img{
+  width: 12px;
+  height: 12px;
+  padding: 0px;
+
+  float: left;
+  display: block;
+  margin: 5px auto 5px 2px;
+}
+.merchants-address p{
+  float: left;
+  margin: 5px 2px 5px auto;
+  padding: 0px;
+  font-size: 12px;
+  line-height: 12px;
+}
+
