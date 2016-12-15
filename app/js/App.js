@@ -13,6 +13,9 @@ import VehicleMakeMaps from './merchants/VehicleMakeMaps';
 import ShopInfo from './merchants/ShopInfo';
 import Reservation from './reservation/Reservation';
 import ChooseVehicle from  './reservation/ChooseVehicle';
+import ServiceCategorys from './reservation/ServiceCategorys';
+import OwnerReservations from './reservation/OwnerReservations';
+import ReservationDetail from './reservation/ReservationDetail';
 const routes = (
   <Router history={hashHistory}>
     <Route path="/owner/merchants" component={Merchants}>
@@ -24,6 +27,9 @@ const routes = (
     <Route path='/owner/serviceShop/shopinfo' component={ShopInfo}/>
     <Route path='/owner/reservation/createreservation' component={Reservation}/>
     <Route path='/owner/choosevehicle' component={ChooseVehicle}/>
+    <Route path='/owner/servicecategorys' component={ServiceCategorys}/>
+    <Route path='/owner/ownerreservations' component={OwnerReservations}/>
+    <Route path='/owner/reservation/details' component={ReservationDetail}/>
   </Router>
 );
 

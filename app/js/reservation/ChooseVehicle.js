@@ -92,7 +92,7 @@ export default class ChooseVehicle extends React.Component {
   }
   render() {
     const {makes, selectMake, models, selectModel, submodelList} = this.state;
-    return (<Container scrollable>
+    return (<Container>
       {/*
        第一层 车型界面
        */}

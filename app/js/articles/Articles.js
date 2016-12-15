@@ -20,7 +20,7 @@ export default class Articles extends React.Component {
     this.alertwithtext = this.alertwithtext.bind(this);
     this.state = {
       articles: [],
-      pageNo: 0,
+      pageNo: 1,
       pullUpState: false,
       isOpen: false,
       alerttext: ''
@@ -46,8 +46,8 @@ export default class Articles extends React.Component {
       }, 200);
 
     })
-
   }
+
 
   onScroll() {
   }
@@ -79,7 +79,7 @@ export default class Articles extends React.Component {
       let datas = res.data.articles;
       if (datas) {
         var articles = self.state.articles;
-        if (pageNo > 0) {
+        if (pageNo > 1) {
           articles = articles.concat(datas);
         } else {
           articles = datas;
@@ -109,7 +109,7 @@ export default class Articles extends React.Component {
       if (upordown == 'up') {
         pageNo++;
       } else {
-        pageNo = 0;
+        pageNo = 1;
       }
       this.setState({
         pageNo: pageNo

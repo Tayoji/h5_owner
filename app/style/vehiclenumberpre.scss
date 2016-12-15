@@ -1,0 +1,32 @@
+.vehicleNumberpre-body {
+  position: absolute;
+  background-color:rgba(53, 53, 53, 0.3);
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  z-index: 855555;
+}
+
+.vehicleNumberpre-body-con{
+  height: auto;
+  position: absolute;
+  background-color: #cccccc;
+  bottom: 0px;
+  left: 5px;
+  right: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.vehicleNumberpre-body-con input {
+  background-color: white;
+  border-style: none;
+  font-size: 14px;
+  width: 25px;
+  height: 25px;
+  color: blue;
+  margin: 5px;
+}

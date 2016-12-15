@@ -1,6 +1,14 @@
-input{
+.reservation-input{
   text-align: right;
   border-style: none;
   font-size: 15px;
   color: #333333;
+}
+.reservation-vehicle{
+  display: flex;
+}
+.reservation-vehicle *{
+  display: flex;
+  margin: 0px;
+  padding: 0px;
 }

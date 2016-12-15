@@ -39,6 +39,7 @@ export default class ServiceShop extends React.Component {
     }
   }
   componentDidMount() {
+    console.log(Api.fetctUserInfo());
     if (!this.state.data){
       this.loadData();
     }

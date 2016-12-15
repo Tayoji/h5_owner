@@ -31,7 +31,7 @@ export default class ArticleItem extends React.Component{
           </div>
             <p className="article-item-data">{`${Tools.getNYRStr(model.createDate)}`}&nbsp;&nbsp;&nbsp;{`阅读${(model.hits) ? model.hits : 0 }`}</p>
         </div>
-        <hr/>
+       <div className="article-line"></div>
       </a>
     )
   }

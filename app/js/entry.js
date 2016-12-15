@@ -33,3 +33,9 @@ import '../i/icon-time.png'
 import '../i/%E6%B4%97%E6%89%8B%E9%97%B4.png'
 import '../i/%E4%BC%91%E6%81%AF%E5%8C%BA.png'
 import '../i/WiFi.png'
+
+import '../i/reservation-cancel.png'
+import '../i/reservation-failure.png'
+import '../i/reservation-success.png'
+import '../i/reservation-waitConfirm.png'
+

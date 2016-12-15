@@ -8,8 +8,8 @@ import {
 // import '../../style/vehiclemakemaps.scss'
 require('../../style/vehiclemakemaps.scss');
 export default class VehicleMakeMaps extends React.Component{
-  render(){
 
+  render(){
     let list = JSON.parse(this.props.location.query.list);
     return (
       <Container

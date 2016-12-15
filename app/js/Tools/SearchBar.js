@@ -50,8 +50,6 @@ export default class SearchBar extends React.Component {
 
   }
   render() {
-    console.log(this.props.width);
-    console.log(this.props.height);
     return (
         <div className="merchants-searbar">
           <input className="merchants-searbar-input" onFocus={this.handleFocus}
