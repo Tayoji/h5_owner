@@ -1,0 +1,109 @@
+*{
+  margin: 0px;
+  padding: 0px;
+  font-size: 15px;
+}
+.merchants-selector-body{
+  position: absolute;
+  top: 88px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  overflow: hidden;
+  background-color: rgba(0,0,0,0.3);
+  z-index: 33333;
+}
+.merchants-selector-body-con {
+  //position: relative;
+  max-height: 100%;
+  background-color: white;
+  overflow: scroll;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.merchants-selector-body-options{
+  //margin-bottom: -10px;
+  overflow: hidden;
+}
+.merchants-selector-body-options-item{
+  //margin-bottom: -10px;
+}
+.merchants-selector-body-options-item p {
+  color: #999999;
+  margin: 10px;
+  width: calc(100% - 20px);
+  line-height: 100%;
+}
+.merchants-selector-body-options-item div{
+  display: flex;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 10px;
+}
+.merchants-selector-body-options-item input:disabled{
+  color:#cccccc;
+  width: calc((100% - 20px)/3);
+  border: 1px solid #cccccc;
+  margin-bottom: 10px;
+  padding: 8px 0px;
+  border-radius: 3px;
+  background-color: white;
+}
+.merchants-selector-button-normal{
+  color: #333333;
+  width: calc((100% - 20px)/3);
+  border: 1px solid #cccccc;
+  margin-bottom: 10px;
+  padding: 8px 0px;
+  border-radius: 3px;
+  background-color: white;
+}
+.merchants-selector-button-selected{
+  border: 1px solid rgb(251,194,194);
+  color: #333333;
+  width: calc((100% - 20px)/3);
+  margin-bottom: 10px;
+  padding: 8px 0px;
+  border-radius: 3px;
+  background-color: rgb(255,245,245);
+
+}
+.merchants-selector-note{
+  margin: 20px 10px 10px 10px;
+  font-size: 13px;
+  color: #666;
+}
+.merchants-selector-buttons{
+  width: 100%;
+  border-top: 1px solid #cccccc;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  //margin-bottom: -5px;
+  height: 40px;
+  background-color: white;
+  position: absolute;
+}
+.merchants-selector-buttons > button{
+  border-style: none;
+  margin-top: 5px;
+  height: 25px;
+  width: 50%;
+
+}
+.merchants-selector-buttons > div{
+  width: 1px;
+  background-color: #cccccc;
+  height: 25px;
+  margin-top: 5px;
+  position: absolute;
+}
+.chongzhi-button{
+  color: #333333;
+}
+.true-button{
+  color: #F43146;
+}

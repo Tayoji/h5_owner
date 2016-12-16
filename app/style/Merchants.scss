@@ -82,22 +82,36 @@
 //}
 .merchants-option{
   width: 25%;
-  margin: 10px 0px;
+  //margin: 10px 0px;
   float: left;
   text-align: center;
   border-right: 1px solid rgb(232,232,232);
+  height: 100%;
+
 }
 .merchants-option div{
   display: flex;
   margin: auto;
+  height: 100%;
 }
-.merchants-option p{
+.merchants-options-selected{
+  border-bottom: 1.5px solid #F43146;
+}
+.merchants-options-selected p{
+  color:#F43146;
+  font-size: 15px;
+  margin: auto 2px auto auto;
+  float: left;
+  display: block;
+}
+.merchants-options-normal p{
   font-size: 15px;
   color: #333333;
   margin: auto 2px auto auto;
   float: left;
   display: block;
 }
+
 .merchants-option img{
   width: 12px;
   height: 7px;

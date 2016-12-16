@@ -13,6 +13,7 @@ import SearchBar from '../Tools/SearchBar'
 import ReactIScroll from 'reactjs-iscroll';
 import iScroll from 'iscroll/build/iscroll-probe';
 import MerchantsItem from './MerchantsItem';
+import MerchantsSelector from './MerchantsSelector';
 // import '../../style/Merchants.scss';
 require('../../style/Merchants.scss');
 var Api = require('../Tools/Api')
@@ -21,24 +22,34 @@ export default class Merchants extends React.Component {
     super(props);
     this.loadData.bind(this);
     this.handleChange.bind(this);
+
     this.state = {
       keyword: '',
+      pullUpState:true,
       pageNo: 1,
+      selectorIndex:-1,
       shopList: [],
       address: {
         coords: null,
       },
-      options: [{
+      merchantsoptions: [{
         name: "全部服务",
-        id: 'all'
+        value: 'all',
+        type:'services'
       }, {
         name: "全城",
-        id: '-1'
+        value: '-1',
+        type:'city',
       }, {
         name: "综合排序",
-        id: 'all',
+        value: 'default',
+        type: 'sort',
       }, {
         name: '筛选',
+        value:'',
+        value1:'1',
+        type: 'selector',
+
       }],
       position: {
         point: {
@@ -47,6 +58,16 @@ export default class Merchants extends React.Component {
         }
       }
     }
+    this.parms = {
+      "category": "all",
+      "orderType": "default",
+      "pageNo": 1,
+      "cityCode": 268,
+      "areaCode": -1,
+      "insuranceLevel": 1,
+      "shopType": ""
+    };
+
   }
 
 
@@ -60,7 +81,6 @@ export default class Merchants extends React.Component {
       var geolocation = new BMap.Geolocation();
       geolocation.getCurrentPosition(function (r) {
         if (this.getStatus() == BMAP_STATUS_SUCCESS) {
-          console.log('++++', r);
           self.setState({
             position: r
           });
@@ -77,7 +97,6 @@ export default class Merchants extends React.Component {
 
   componentWillUnmount() {
 
-    console.log(this.props.location.key)
     if (this.state.position.address){
       window.sessionStorage.setItem(this.props.location.key, JSON.stringify(this.state));
     }else {
@@ -85,35 +104,51 @@ export default class Merchants extends React.Component {
     }
   }
 
-  loadData() {
+  loadData(callback) {
     let self = this;
-    var parms = {
-      "category": "all",
-      "orderType": "default",
-      "pageNo": this.state.pageNo,
-      "cityCode": 268,
-      "areaCode": -1,
-      "insuranceLevel": 1,
-      "shopType": ""
-    }
     if (this.state.position) {
-      parms.mapCoordinates = this.state.position.point.lng + "," + this.state.position.point.lat;
+      this.parms.mapCoordinates = this.state.position.point.lng + "," + this.state.position.point.lat;
     }
     if (this.state.keyword) {
-      parms.keyword = this.state.keyword;
+      this.parms.keyword = this.state.keyword;
     }
-    Api.POST(Api.url("/owner/serviceShop/list.jhtml"), parms, (res) => {
-      self.setState({
-        shopList: res.data.shopList,
-      });
-    }, (e) => {
+    Api.POST(Api.url("/owner/serviceShop/list.jhtml"), this.parms, (res) => {
+      if (res.success){
+        var shopList = self.state.shopList;
+        if (self.parms.pageNo == 1){
+          shopList = res.data.shopList;
+        }else {
+          shopList = shopList.concat(res.data.shopList);
+        }
+        self.setState({
+          shopList: shopList,
+          pullUpState:res.data.shopList.length >= 20
+        });
 
+      }
+
+      if (callback){
+        callback();
+      }
+    }, (e) => {
+      if (callback){
+        callback();
+      }
     })
   }
+  handleRefresh(upordown, callback) {
+    if (callback && typeof callback === 'function') {
 
+      if (upordown == 'up') {
+        this.parms.pageNo++;
+      } else {
+        this.parms.pageNo = 1;
+      }
+      this.loadData(callback);
+    }
+  }
   handleChange(e) {
     let self = this;
-    console.log(e);
     if (this.keywordTimer) {
       clearTimeout(this.keywordTimer)
     }
@@ -121,6 +156,7 @@ export default class Merchants extends React.Component {
       self.setState({
         keyword: e
       })
+      self.parms.pageNo = 1;
       self.loadData()
       clearTimeout(self.keywordTimer)
     }, 1000);
@@ -130,19 +166,69 @@ export default class Merchants extends React.Component {
   handleBlur(e) {
 
   }
+  handleSelector(index){
+    if (this.state.selectorIndex == index){
+      this.setState({
+        selectorIndex:-1,
+      })
+    }else {
+      this.setState({
+        selectorIndex:index,
+      })
+    }
+  }
+  handlemerchantsSelector(option){
+    var merchantsoptions = this.state.merchantsoptions;
+    merchantsoptions.map((item)=>{
+      if (item.type == option.type){
+        return option;
+      }else {
+        return item;
+      }
+    })
+    switch (option.type){
+      case "services":
+        this.parms.category = option.value
+        break;
+      case "city":
+        this.parms.areaCode = option.value;
+        break;
+      case "sort":
+        this.parms.orderType = option.value;
+        break
+      case 'selector':
+        this.parms.shopType = option.value;
+        if (option.value == "" || option.value=="traditionShop"){
+          this.parms.insuranceLevel = option.value1;
+        }else {
+          this.parms.insuranceLevel = 1;
+        }
+        break
+    }
+    this.setState({
+      merchantsoptions:merchantsoptions,
+      selectorIndex:-1,
+    })
+    this.loadData();
 
+  }
   render() {
-    let {position} = this.state;
+    let {position,selectorIndex,merchantsoptions,pullUpState} = this.state;
     return (<Container>
       <div className="merchants-header">
         <SearchBar height="44px" onChange={this.handleChange.bind(this)}/>
+        <MerchantsSelector  option = {selectorIndex != -1 ? merchantsoptions[selectorIndex] : null} onSelected = {
+          this.handlemerchantsSelector.bind(this)
+        }/>
         <div className="merchants-options">
           {
-            this.state.options.map((item, index) => {
+            merchantsoptions.map((item, index) => {
               return (<div className="merchants-option" style={{borderColor: (index == 3 ? "#fff" : null)}} key={index}>
-                <div>
+                <div className={`merchants-options-${index == selectorIndex ? "selected" : 'normal'}`}
+                      onClick={this.handleSelector.bind(this,index)}
+                >
                   <p>{item.name}</p>
-                  <img src="../i/down.png"/>
+                  <img src={`${index == selectorIndex ? "../i/up.png" : "../i/down.png"}`} />
                 </div>
               </div>)
             })
@@ -155,6 +241,8 @@ export default class Merchants extends React.Component {
         <ReactIScroll
           iScroll={iScroll}
           ref="merchantsrefresh"
+          pullUp={pullUpState}
+          handleRefresh={this.handleRefresh.bind(this)}
         >
           <div className="merchants-address">
             <div>
@@ -180,8 +268,6 @@ export default class Merchants extends React.Component {
           </ul>
         </ReactIScroll>
       </div>
-
-
     </Container>);
   }
 
