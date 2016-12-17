@@ -25,7 +25,7 @@ export default class Merchants extends React.Component {
 
     this.state = {
       keyword: '',
-      pullUpState:true,
+      pullUpState:false,
       pageNo: 1,
       selectorIndex:-1,
       shopList: [],

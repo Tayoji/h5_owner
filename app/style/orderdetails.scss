@@ -1,0 +1,111 @@
+*{
+  margin: 0px;
+  padding: 0px;
+
+}
+.order-details-list{
+  margin: 0px;
+}
+.order-details-list .item{
+  padding: 10px;
+}
+.order-details-header{
+  width: 100%;
+  position: relative;
+}
+.order-details-flow , .order-details-state{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  z-index: 99;
+  position: relative;
+}
+.order-details-flow-green{
+  position: absolute;
+  height: 1px;
+  background-color:green;
+  top: 6px;
+  z-index: 1;
+  left: 10px;
+  right: 10px;
+  margin: 0px 10px;
+}
+.order-details-flow-gray{
+  position: absolute;
+  height: 1px;
+  left: 10px;
+  right: 10px;
+  background-color: #cccccc;
+  top: 6px;
+  z-index: 0;
+  margin: 0px 10px;
+}
+.order-details-flow-item{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+.order-details-flow-item img{
+  width: 13px;
+  height: 13px;
+  padding: 0px;
+  margin: 0px;
+}
+.order-details-flow-item p{
+  font-size: 12px;
+  color: #999999;
+  margin-top: 8px;
+}
+.order-details-state{
+  width: 100%;
+  margin-top: 8px;
+}
+.order-details-state p{
+  margin: 0px;
+  font-size: 15px;
+  color: #333333;
+}
+.order-details-state .state{
+  color: green;
+}
+.order-details-header > button{
+  float: right;
+  margin-top: 5px;
+  color: #333333;
+  padding: 5px 10px;
+  font-size: 15px;
+  border-radius: 3px;
+  border: 1px solid #cccccc;
+}
+.order-details-garage > div{
+  width: calc(100% - 40px);
+  float: left;
+}
+.order-details-garage > div > p{
+  margin: 0px;
+  font-size: 14px;
+  color: #333333;
+  font-weight: normal;
+}
+.order-details-garage > img {
+  height: 36px;
+  width: 38px;
+  //padding-left: 14px;
+  padding: 9px 5px 9px 15px;
+  border-left: 1px solid #cccccc;
+  float: right;
+}
+.order-details-section{
+  height: 10px;
+  background-color: rgb(244,244,244);
+}
+.order-details-vehicle p{
+  white-space: pre-wrap;
+  margin: 0px;
+  font-size: 14px;
+  color: #333333;
+  font-weight: normal;
+}

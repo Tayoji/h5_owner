@@ -39,3 +39,8 @@ import '../i/reservation-failure.png'
 import '../i/reservation-success.png'
 import '../i/reservation-waitConfirm.png'
 
+
+import '../i/oder-details-normal.png';
+import '../i/oder-details-select.png';
+import '../i/oder-details-tel.png';
+

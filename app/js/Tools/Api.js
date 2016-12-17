@@ -5,12 +5,14 @@ var fetch = require('isomorphic-fetch');
 var Tools = require('./Tools')
 let isRelease = false;
 // https://192.168.1.17:9443  http://192.168.1.6:8000/api  http://192.168.1.15:8080/api
-let base = isRelease ? 'https://api.xiucheren.net' : 'http://192.168.1.6:8000/api';
+let base = isRelease ? 'http://b2b.xiucher.com/api' : 'http://192.168.1.6:8000/api';
 
 function tokenUrl() {
   return `${base}/oauth/token?grant_type=client_credentials`;
 }
-
+function appDownloadUrl() {
+  return 'http://www.xiucheren.net/apk/download.jsp?app=owner';
+}
 
 function saveUserInfo(data) {
   window.localStorage.setItem("user_info",JSON.stringify(data));
@@ -127,6 +129,7 @@ function GET(url, data, success, fail) {
 module.exports = {
   tokenUrl: tokenUrl,
   token: token,
+  appDownloadUrl:appDownloadUrl,
   saveUserInfo:saveUserInfo,
   fetctUserInfo:fetctUserInfo,
   isRelease: isRelease,
