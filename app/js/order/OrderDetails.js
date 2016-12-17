@@ -65,9 +65,9 @@ export default class OrderDetails extends React.Component {
   }
 
   componentDidMount() {
-    console.log(this.props);
+    console.log(Api.fetctUserInfo());
     let self = this;
-    Api.GET(`http://192.168.1.12:8080/api/owner/serviceOrder/${this.props.location.query.id}.jhtml`, null, (res) => {
+    Api.GET(`http://192.168.1.16:8080/api/owner/serviceOrder/${this.props.location.query.id}.jhtml`, null, (res) => {
       if (res.success) {
         self.setState({
           orderDetail: res.data.orderDetail,
@@ -79,18 +79,37 @@ export default class OrderDetails extends React.Component {
 
     })
   }
+  cancelOrder(){
 
+  }
+  handleflowState(state){
+    switch (state){
+      case 'created':
+        return 0;
+      case 'recepted':
+        return 1;
+      case 'waitConfirm':
+        return 2;
+      case 'repairing':
+        return 3;
+      case 'balanced','completed':
+        return 4;
+      default:
+        return 4;
+    }
+  }
   createHeader(orderDetail) {
-
+    console.log(window.innerWidth)
+    let flowIndex = this.handleflowState(orderDetail.beforeCancelStatus ? orderDetail.beforeCancelStatus : orderDetail.orderStatusCode);
+    let greenRight = (window.innerWidth - 30)/4 * (4 - flowIndex);
     return (<div className="order-details-header">
-        <div className="order-details-flow-green"></div>
+        <div className="order-details-flow-green" style={{right: `${greenRight}px`}}></div>
         <div className="order-details-flow-gray"></div>
-
         <div className="order-details-flow">
           {
             flowNames.map((item, index) => {
               return (<div key={index} className="order-details-flow-item">
-                <img src="../i/oder-details-normal.png"/>
+                <img src={`../i/oder-details-${index <= flowIndex ? 'select' :'normal'}.png`}/>
                 <p>{item}</p>
               </div>)
             })
@@ -100,7 +119,12 @@ export default class OrderDetails extends React.Component {
           <p className="state">{orderDetail.orderStatusName}</p>
           <p className="sn">{`订单号${orderDetail.sn}`}</p>
         </div>
-        <button>取消订单</button>
+        {
+          flowIndex <=2 ? <button onClick={()=>{
+
+          }
+          }>取消订单</button> : null
+        }
       </div>
     )
   }
@@ -129,11 +153,21 @@ export default class OrderDetails extends React.Component {
               }/>
             </div>}/>
             <div className="order-details-section"></div>
+            {
+              this.handleflowState(orderDetail.orderStatusCode) == 1 ? <div>
+                <List.Item title = {<div className="order-details-waitConfirm">
+                  <img src="../i/oder-detals-waitConfirm.png"/>
+                  <p>车辆检查完毕汽修站将第一时间编辑服务项目和所需配件，请耐心等待！</p>
+                </div>}/>
+                <div className="order-details-section"></div>
+              </div> : null
+            }
             <List.Item title = "车辆信息"/>
             <List.Item title={<div className="order-details-vehicle">
               <p>{`车牌号  ${orderDetail.vehicleNumber}`}</p>
               <p>{`车   型  ${orderDetail.vehicleName}`}</p>
             </div>}/>
+
           </List>)
           :
           null

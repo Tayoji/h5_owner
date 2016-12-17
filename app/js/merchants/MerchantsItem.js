@@ -51,7 +51,7 @@ export default class MerchantsItem extends React.Component {
           <div className="merchants-item-buttoms">
             <div className="merchants-item-buttom">
               <img className="merchants-item-buttom-img" src='../i/insurance.png'/>
-              <p className="merchants-item-buttom-text">{['1000', '2000', '5000', '2万', '5万', '10万', '20万'][model.insurance]}</p>
+              <p className="merchants-item-buttom-text">{['1000', '2000', '5000', '2万', '5万', '10万', '20万'][model.insurance - 1]}</p>
             </div>
             <div className="merchants-item-buttom" hidden={!model.isRentShop}>
               <img className="merchants-item-buttom-img" src='../i/isRentShop.png'/>

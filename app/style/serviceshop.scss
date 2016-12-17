@@ -15,7 +15,19 @@
   height: 200px;
   margin: 0px;
   padding: 0px;
+  overflow: hidden;
 
+}
+.serviceshop-header-imageCount{
+  position: absolute;
+  color: white;
+  font-size: 14px;
+  line-height: 14px;
+  padding: 5px 10px;
+  background-color: rgba(0,0,0,0.7);
+  border-radius: 12px;
+  top: 20px;
+  right: 10px;
 
 }
 .serviceshop-header-info{
@@ -25,11 +37,35 @@
   margin: 0px;
   height: 55px;
   top: 145px;
-
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
 }
-.serviceshop-header-info p{
-  margin: 0px;
+.serviceshop-header-info1{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+//.serviceshop-header-info p{
+//  margin: 0px;
+//  color: #ffffff;
+//}
+.serviceshop-header-info  p{
+  margin: 10px;
   color: #ffffff;
+  font-size: 13px;
+  padding: 0px;
+  line-height: 15px;
+  height: 15px;
+}
+.serviceshop-header-info-shopname{
+  //width: calc(100% - 30px - 150px);
+}
+.serviceshop-header-info-count{
+  //width: 100px;
+}
+.serviceshop-header-info-review{
+  //width: 100px;
 
 }
 .item-title{
@@ -81,3 +117,44 @@
   margin: 0px 10px 0px 5px;
 
 }
+.serviceshop-header-insurance{
+  display: flex;
+  border: 1px solid rgb(103,199,25);
+  height: 15px;
+  overflow: hidden;
+  border-radius: 3px;
+}
+.serviceshop-header-insurance > img
+{
+  width: 15px;
+  height: 15px;
+  margin: -0.65px 2px auto -0.2px;
+  padding: 0px;
+}
+.serviceshop-header-insurance p{
+  margin: 0px;
+  padding-right: 2px;
+  line-height: 15px;
+  margin-top: -1px;
+}
+.serviceshop-header-info2{
+  display: flex;
+  justify-content: space-between;
+  margin-top: -10px;
+}
+.serviceshop-header-info2 > div{
+  display: flex;
+  width: 200px;
+  margin: 10px;
+
+}
+.serviceshop-header-info2 > div > img{
+  width: 39px;
+  height: 15px;
+}
+//.serviceshop-header-info2 > div > p
+//{
+//  margin: 0px;
+//  display: inline;
+//  padding: 0px;
+//}
