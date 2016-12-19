@@ -3,6 +3,7 @@
   padding: 0px;
 
 }
+
 .order-details-list{
   margin: 0px;
 }
@@ -125,6 +126,46 @@
   font-weight: normal;
   margin: auto 20px;
   text-align: center;
+}
+.order-details-service-items{
+  margin: 10px;
+}
+.order-details-service-items-footer{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+.order-details-service-items-footer > p{
+  margin: 0px;
+  color: #f43146;
+}
+.order-details-service-item-header{
+  color: #999999;
+  font-size: 13px;
+  height: 20px;
+  padding-left: 8px;
+  border-left: 2px solid #f43146;
+  line-height: 20px;
+  font-weight: bold;
+  //margin-bottom: 0px;
 
-
+}
+.order-details-service-item{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.order-details-service-item > p{
+  margin: 0px;
+  font-size: 15px;
+}
+.order-details-button{
+  width: 100%;
+  position: absolute;
+  height: 44px;
+  bottom: 0px;
+  margin: 0px;
+  color: white;
+  background-color: #f43146;
 }

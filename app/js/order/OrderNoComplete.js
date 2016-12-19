@@ -85,7 +85,7 @@ export default class OrderNoComplete extends React.Component {
 
   render() {
     const {pullUpState, orderList,headerhidden} = this.state;
-    return (<Container>
+    return (<Container >
       <ReactIScroll
         iScroll={iScroll}
         ref="refresh"
