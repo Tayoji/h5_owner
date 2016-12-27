@@ -152,7 +152,7 @@ export default class Reservation extends React.Component {
       }
     })
     let self = this;
-    Api.POST('http://192.168.1.12:8080/api/owner/reservation /create.jhtml', {
+    Api.POST('http://192.168.1.12:8080/api/owner/reservation/create.jhtml', {
       serviceShopId: this.props.location.query.serviceShopId,
       ownerId: Api.fetctUserInfo().ownerId,
       vehicleId: this.state.vehicleInfo.id,
@@ -186,14 +186,22 @@ export default class Reservation extends React.Component {
         })
       }
     },(e)=>{
-
+      self.setState({
+        modalProps:{
+          role:'alert',
+          title:e.msg,
+          isOpen:true,
+        }
+      })
     })
   }
 
   render() {
     const {vehicleInfo, servicecategorys, datePickerModel, hourMinPicker, date, modalProps, vehicleName,VehicleNumberPreIsOpen} = this.state;
     return (<Container transition={this.state.transition}
-                       scrollable>
+                       scrollable
+                       className = "reservation-body"
+    >
       <Group noPadded>
         <VehicleNumberPre isOpen={VehicleNumberPreIsOpen} onSelect = {(e)=>{
             this.setState({
@@ -245,15 +253,15 @@ export default class Reservation extends React.Component {
         }
         }/>
         <List>
-          <List.Item title="车&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;辆" linkComponent={Link}
+          <List.Item title="车&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;辆" linkComponent={Link} className = "reservation-servicecategorys"
                      linkProps={{to: {pathname: '/owner/choosevehicle'}}}
                      after={vehicleInfo ? vehicleInfo.name : null}
           />
-          <List.Item title="服务种类" linkComponent={Link}
+          <List.Item title="服务种类" linkComponent={Link} className = "reservation-servicecategorys"
                      linkProps={{to: {pathname: '/owner/servicecategorys'}}}
                      after={servicecategorys.join(',')}
           />
-          <List.Item title="行驶里程" after={<input className="reservation-input" id="reservation-mileage" placeholder="输入行驶里程"/>}/>
+          <List.Item className="reservation-li" title="行驶里程" after={<input style={{borderStyle:"none"}} className="reservation-input" id="reservation-mileage"  placeholder="输入行驶里程"/>}/>
         </List>
       </Group>
       <Group noPadded>

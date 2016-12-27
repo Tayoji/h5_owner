@@ -11,7 +11,7 @@ function tokenUrl() {
   return `${base}/oauth/token?grant_type=client_credentials`;
 }
 function appDownloadUrl() {
-  return 'http://www.xiucheren.net/apk/download.jsp?app=owner';
+  return `http://b2b.xiucher.com/apk/download.jsp?app=owner`;
 }
 
 function saveUserInfo(data) {

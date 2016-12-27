@@ -69,7 +69,7 @@ export default class ReservationDetail extends React.Component {
     let top = `${-window.innerWidth / 720.0 * 196 / 2 - 10}px`;
     return ( data ?
       (<div>
-        <Group noPadded>
+        <Group noPadded className = "reservation-detail-body">
           <div className="reservation-detail-header">
             <img src={imgUrl}/>
             <p style={{top: top}}>{data.reservationStatusName}</p>

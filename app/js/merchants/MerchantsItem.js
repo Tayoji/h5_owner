@@ -6,6 +6,7 @@ import {
   Container,
 } from 'amazeui-touch';
 // import '../../style/MerchantsItem.scss';
+
 require('../../style/MerchantsItem.scss');
 import Star from  '../star/star'
 
@@ -23,8 +24,10 @@ export default class MerchantsItem extends React.Component {
     return (
       <div className="merchants-item-con">
         <div className="merchants-item-imgs">
+
           <img className="merchants-item-imgs-icon" src='../i/isUnionMember.png'/>
-          <img className="merchants-item-imgs-shop" src={model.imageUrl}/>
+            <img className="merchants-item-imgs-shop" src={model.imageUrl}/>
+
         </div>
         <div className="merchants-item-info">
           <p className="merchants-item-info-name">{model.name}</p>

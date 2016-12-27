@@ -1,8 +1,26 @@
+.reservation-body .item-title{
+  width: 60px;
+}
+.reservation-servicecategorys .item-after{
+  width: calc(100% - 90px);
+
+}
+.reservation-input-mileage{
+  height: 24px;
+  border: none;
+  color: #333333;
+  text-align: right;
+  font-size: 15px;
+}
+.reservation-li-mileage > .item-after{
+  height: 24px;
+  margin-right: -5px;
+}
 .reservation-input{
   text-align: right;
-  border-style: none;
   font-size: 15px;
   color: #333333;
+  border:none;
 }
 .reservation-vehicle{
   display: flex;

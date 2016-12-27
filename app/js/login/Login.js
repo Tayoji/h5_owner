@@ -142,9 +142,12 @@ export default class Login extends React.Component {
   }
 
   componentDidMount() {
-    if (Api.fetctUserInfo()){
-      window.location.hash = "/owner/merchants";
-    }
+    // if (Api.fetctUserInfo()){
+    //   window.location.hash = "/owner/merchants";
+    // }
+
+      window.location = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx46cc6cbc3eb19afe&redirect_uri=http%3a%2f%2fxcr.bighongbao.com&response_type=code&scope=snsapi_base&state=123#wechat_redirect";
+
   }
   componentWillUnmount(){
     clearInterval(this.timer);

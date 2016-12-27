@@ -6,9 +6,18 @@
 
 .order-details-list{
   margin: 0px;
+  //overflow-y: scroll;
+  //height: calc(100% - 44px);
+  //position: absolute;
+  width: 100%;
 }
 .order-details-list .item{
   padding: 10px;
+}
+.order-details-model-subtitle{
+  color: #333;
+  font-size: 14px;
+
 }
 .order-details-header{
   width: 100%;
@@ -162,10 +171,35 @@
 }
 .order-details-button{
   width: 100%;
-  position: absolute;
+  //position: absolute;
   height: 44px;
-  bottom: 0px;
+  //bottom: 0px;
   margin: 0px;
   color: white;
   background-color: #f43146;
+  border-style: none;
+  border-radius: 0px;
+}
+.order-details-service-item-part{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  background-color: rgb(246,246,246);
+
+}
+.order-details-service-item-part > img{
+  margin: 5px;
+  width: 70px;
+  height: 70px;
+  padding: 0px;
+  background-color: #f43146;
+}
+.order-details-service-item-part-count > p[value~=x]{
+  color: #999999;
+}
+.order-details-service-item-part-totalPrice{
+
+}
+.order-details-service-item-part-quantity{
+  color: #999999;
 }

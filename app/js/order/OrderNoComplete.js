@@ -42,13 +42,17 @@ export default class OrderNoComplete extends React.Component {
   loadData(callback) {
     if (this.ownerId) {
       let self = this;
-      Api.GET('http://192.168.1.16:8080/api/owner/serviceOrder/noComplete.jhtml', {
+      Api.GET('http://192.168.1.12:8080/api/owner/serviceOrder/noComplete.jhtml', {
         ownerId: this.ownerId,
         pageNo: this.pageNo
       }, (res) => {
         var orderList = self.state.orderList;
         if (res.success) {
           orderList = self.pageNo == 1 ? res.data.orderList : orderList.concat(res.data.orderList)
+          // orderList =  orderList.concat(res.data.orderList)
+          // orderList =  orderList.concat(res.data.orderList)
+          // orderList =  orderList.concat(res.data.orderList)
+
         }
         self.setState({
           orderList: orderList,
@@ -56,6 +60,7 @@ export default class OrderNoComplete extends React.Component {
         })
         if (callback) {
           callback();
+          console.log(self.refs.refresh.iScrollInstance)
         }
 
       }, (e) => {

@@ -6,7 +6,8 @@ import {
   Container,
   List,
   Group,
-  Button
+  Button,
+  Modal
 }from 'amazeui-touch';
 import '../../style/orderdetails.scss';
 var Api = require('../Tools/Api');
@@ -27,6 +28,8 @@ var Api = require('../Tools/Api');
 /**
  * 维修中
  */
+// confirmed 服务中
+// ownerCancelled 订单取消
 //repairing("维修中", "维修中", "维修中", ""),
 
 /**
@@ -60,15 +63,28 @@ const orderStatusCode = ['created', 'recepted', 'waitConfirm', 'repairing', 'bal
 export default class OrderDetails extends React.Component {
   constructor(props) {
     super(props);
+    this.loadData.bind(this);
     this.state = {
       orderDetail: null,
+      modelProps: {
+        title: '',
+        role: 'loading',
+        isOpen: false,
+        subTitle: '',
+
+      },
     }
   }
 
   componentDidMount() {
     console.log(Api.fetctUserInfo());
+    this.loadData();
+
+  }
+
+  loadData() {
     let self = this;
-    Api.GET(`http://192.168.1.6:8000/api/owner/serviceOrder/${this.props.location.query.id}.jhtml`, null, (res) => {
+    Api.GET(`http://192.168.1.12:8080/api/owner/serviceOrder/${this.props.location.query.id}.jhtml`, null, (res) => {
       if (res.success) {
         self.setState({
           orderDetail: res.data.orderDetail,
@@ -81,8 +97,177 @@ export default class OrderDetails extends React.Component {
     })
   }
 
-  cancelOrder() {
+  handleClickBottomButton(value) {
+    switch (value) {
+      case '立即确定':
+        this.confirmOrder(true);
+        break;
+      case '支付': {
+        if (typeof WeixinJSBridge == "undefined") {
+          if (document.addEventListener) {
+            document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+          } else if (document.attachEvent) {
+            document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
+            document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+          }
+        } else {
+          this.onBridgeReady();
+        }
+      }
+        break;
+    }
+  }
 
+  onBridgeReady() {
+    let dateStr = `${parseInt((new Date()).getTime() / 1000)}`;
+    let nonceStr = `${parseInt(Math.random() * Math.pow(10,15))}`
+    WeixinJSBridge.invoke(
+      'getBrandWCPayRequest', {
+        "appId": "wx2421b1c4370ec43b",     //公众号名称，由商户传入
+        "timeStamp": dateStr,         //时间戳，自1970年以来的秒数
+        "nonceStr": nonceStr, //随机串
+        "package": "prepay_id=u802345jgfjsdfgsdg888",
+        "signType": "MD5",         //微信签名方式：
+        'total_fee':'1',
+        "paySign": "70EA570631E4BB79628FBCA90534C63FF7FADD89" ,//微信签名
+      },
+      function (res) {
+        alert(res)
+        if (res.err_msg == "get_brand_wcpay_request：ok") {
+        }     // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回    ok，但并不保证它绝对可靠。
+      }
+    )
+  }
+
+  cancelOrder(isOpen) {
+    let self = this;
+    if (isOpen) {
+      this.setState({
+        modelProps: {
+          isOpen: true,
+          title: '提示',
+          role: 'confirm',
+          subTitle: '是否取消订单',
+        }
+      })
+    } else {
+      this.setState({
+        modelProps: {
+          isOpen: true,
+          title: '提示',
+          role: 'loading',
+          subTitle: '',
+        }
+      })
+      Api.GET(Api.url(`/owner/serviceOrder/${this.props.location.query.id}/ownerCancelOrder.jhtml`), {
+        id: this.props.location.query.id,
+        operator: Api.fetctUserInfo().ownerId
+      }, (res) => {
+        if (res.success) {
+          self.setState({
+            modelProps: {
+              isOpen: true,
+              title: '提示',
+              subTitle: '取消工单成功',
+            }
+          })
+          setTimeout(() => {
+            self.setState({
+              modelProps: {
+                isOpen: false,
+                title: '提示',
+                subTitle: '取消工单成功',
+              }
+            })
+            self.loadData();
+          }, 1000);
+        } else {
+          self.setState({
+            modelProps: {
+              isOpen: true,
+              title: '提示',
+              role: 'alert',
+              subTitle: res.msg,
+            }
+          })
+        }
+      }, (e) => {
+        self.setState({
+          modelProps: {
+            isOpen: true,
+            title: '提示',
+            role: 'alert',
+            subTitle: e.msg,
+          }
+        })
+      })
+    }
+
+  }
+
+  confirmOrder(isOpen) {
+    let self = this;
+    if (isOpen) {
+      this.setState({
+        modelProps: {
+          isOpen: true,
+          title: '提示',
+          role: 'confirm',
+          subTitle: '是否确认工单',
+        }
+      })
+    } else {
+      this.setState({
+        modelProps: {
+          isOpen: true,
+          title: '提示',
+          role: 'loading',
+          subTitle: '',
+        }
+      })
+      Api.GET(Api.url(`/owner/serviceOrder/${this.props.location.query.id}/confirmOrder.jhtml`), {
+        id: this.props.location.query.id,
+        operator: Api.fetctUserInfo().ownerId
+      }, (res) => {
+        if (res.success) {
+          self.setState({
+            modelProps: {
+              isOpen: true,
+              title: '提示',
+              subTitle: '确认工单成功',
+            }
+          })
+          setTimeout(() => {
+            self.setState({
+              modelProps: {
+                isOpen: false,
+                title: '提示',
+                subTitle: '确认工单成功',
+              }
+            })
+            self.loadData();
+          }, 1000);
+        } else {
+          self.setState({
+            modelProps: {
+              isOpen: true,
+              title: '提示',
+              role: 'alert',
+              subTitle: res.msg,
+            }
+          })
+        }
+      }, (e) => {
+        self.setState({
+          modelProps: {
+            isOpen: true,
+            title: '提示',
+            role: 'alert',
+            subTitle: e.msg,
+          }
+        })
+      })
+    }
   }
 
   handleflowState(state) {
@@ -93,18 +278,54 @@ export default class OrderDetails extends React.Component {
         return 1;
       case 'waitConfirm':
         return 2;
-      case 'repairing':
+      case 'repairing', 'confirmed':
         return 3;
-      case 'balanced', 'completed':
+      case 'balanced':
+        return 4;
+      case 'completed':
         return 4;
       default:
         return -1;
     }
   }
 
+  handleModelAction(action) {
+    const {orderDetail, modelProps} = this.state;
+    if (modelProps.role == 'confirm' && action) {
+      switch (orderDetail.orderStatusCode) {
+        case 'created':
+            this.cancelOrder(false);
+          break;
+        case  'recepted':
+          this.cancelOrder(false);
+          break;
+        case   'confirmed':
+          this.cancelOrder(false);
+          break;
+        case 'waitConfirm':
+            this.confirmOrder(false);
+
+          break;
+        case 'balanced', 'completed':
+          break;
+        default:
+          break;
+      }
+    } else {
+      this.setState({
+        modelProps: {
+          isOpen: false,
+        }
+      })
+    }
+
+  }
+
+
   createHeader(orderDetail) {
     console.log(window.innerWidth)
     let flowIndex = this.handleflowState(orderDetail.beforeCancelStatus ? orderDetail.beforeCancelStatus : orderDetail.orderStatusCode);
+    let status =  this.handleflowState(orderDetail.orderStatusCode);
     let greenRight = (window.innerWidth - 30) / 4 * (4 - flowIndex);
     return (<div className="order-details-header">
         <div className="order-details-flow-green" style={{right: `${greenRight}px`}}></div>
@@ -124,14 +345,13 @@ export default class OrderDetails extends React.Component {
           <p className="sn">{`订单号${orderDetail.sn}`}</p>
         </div>
         {
-          flowIndex <= 2 ? <button onClick={() => {
-
-          }
-          }>取消订单</button> : null
+          status <= 3 && status != -1 ? <button onClick={ this.cancelOrder.bind(this, true)
+          }>{`${status == 3 ? '终止服务' : '取消订单'}`}</button> : null
         }
       </div>
     )
   }
+
 
   // 服务工单明细
   createServiceItem(items) {
@@ -166,7 +386,7 @@ export default class OrderDetails extends React.Component {
                 <p className="order-details-service-item-header">服务项目</p>
                 {
                   services.map((item, index) => {
-                    return (<div className="order-details-service-item">
+                    return (<div className="order-details-service-item" key={index}>
                       <p>{item.name}</p>
                       <p>{`¥${item.totalPrice}`}</p>
                     </div>);
@@ -183,20 +403,24 @@ export default class OrderDetails extends React.Component {
            */}
           {
             parts.length > 0 ? <div className="order-details-service-items">
-              <p>零配件</p>
+              <p className="order-details-service-item-header">零配件</p>
               {
                 parts.map((item, index) => {
-                  return <div className="order-details-service-item">
+                  return <div className="order-details-service-item-part" key={index}>
                     <img />
-                    <p>{item.name}</p>
-                    <p>{`¥${item.totalPrice}`}</p>
-                    <p>{`x${item.name}${item.measureUnit}`}</p>
+                    <div className="order-details-service-item-part-name">
+                      <p>{item.name}</p>
+                    </div>
+                   <div className="order-details-service-item-part-count">
+                     <p className="order-details-service-item-part-totalPrice">{`¥${item.totalPrice}`}</p>
+                     <p className="order-details-service-item-part-quantity">{`x${item.quantity}${item.measureUnit}`}</p>
+                   </div>
                   </div>
                 })
               }
               <div className="order-details-service-items-footer">
                 <p>小计</p>
-                <p>{`¥${parts}`}</p>
+                <p>{`¥${partsTotalPrice}`}</p>
               </div>
             </div> : null
           }
@@ -208,27 +432,48 @@ export default class OrderDetails extends React.Component {
   }
 
   createButton(orderDetail) {
-    let index = this.handleflowState(orderDetail.orderStatusCode);
-    var  buttonValue =  "";
-    switch (index){
-      case 2:
-        buttonValue = "li";
+    var buttonValue = "";
+    switch (orderDetail.orderStatusCode) {
+      case 'created':
+        break;
+      case 'recepted':
+        break;
+      case 'waitConfirm':
+        buttonValue = "立即确定";
+        break;
+      case 'repairing':
+        break;
+      case 'balanced':
+        buttonValue = "支付";
+        break;
+      case 'completed':
+        buttonValue = "立即评价";
+        break;
+      default:
         break;
     }
+    let hidden = buttonValue.length > 0 && orderDetail.beforeCancelStatus == null;
     return (
-      index < 2 || index == 3 ?
-      <Button className="order-details-button">立即评价</Button> : null
+      hidden ?
+        <input className="order-details-button"
+                onClick={this.handleClickBottomButton.bind(this, buttonValue)} value={buttonValue} type="button"/> : null
     );
   }
 
 
   render() {
-    const {orderDetail} = this.state;
-    return (<Container className="order-details-body">
+    const {orderDetail, modelProps} = this.state;
+    return (<Container className="order-details-body" scrollable>
+      <Modal {...modelProps} onAction={this.handleModelAction.bind(this)}>
         {
-          orderDetail ?
-            (<div>
-              <List className='order-details-list'>
+          modelProps.subTitle && modelProps.subTitle.length > 0 ?
+            <p className="order-details-model-subtitle">{modelProps.subTitle}</p> : null
+        }
+      </Modal>
+      {
+        orderDetail ?
+          (<div>
+            <List className='order-details-list' >
               <List.Item>
                 {
                   this.createHeader(orderDetail)
@@ -264,14 +509,15 @@ export default class OrderDetails extends React.Component {
                 <p>{`车牌号  ${orderDetail.vehicleNumber}`}</p>
                 <p>{`车   型  ${orderDetail.vehicleName}`}</p>
               </div>}/>
-            </List>
               {
                 this.createButton(orderDetail)
               }
-            </div>)
-            :
-            null
-        }
+            </List>
+
+          </div>)
+          :
+          null
+      }
     </Container>);
   }
 }

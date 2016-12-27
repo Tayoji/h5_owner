@@ -59,13 +59,17 @@
   height: 15px;
 }
 .serviceshop-header-info-shopname{
-  //width: calc(100% - 30px - 150px);
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
 }
 .serviceshop-header-info-count{
-  //width: 100px;
+  text-align: right;
+  white-space:nowrap;
 }
 .serviceshop-header-info-review{
-  //width: 100px;
+  white-space:nowrap;
+
 
 }
 .item-title{
