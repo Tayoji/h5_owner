@@ -18,6 +18,7 @@ export default class ShopInfo extends React.Component{
     };
   }
   componentDidMount(){
+    Api.setTitle("门店详情")
     let id = this.props.location.query.id;
     let self = this;
     Api.POST(Api.url(`/owner/serviceShop/${id}/shopInfo.jhtml`),null,(res)=>{

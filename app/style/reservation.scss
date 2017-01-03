@@ -1,3 +1,11 @@
+.reservation-group{
+  margin-top: 20px;
+}
+
+.reservation-list .item-after{
+  text-align: right;
+  color: #333333;
+}
 .reservation-body .item-title{
   width: 60px;
 }
@@ -21,6 +29,14 @@
   font-size: 15px;
   color: #333333;
   border:none;
+}
+#reservation-mileage{
+  height: 25px;
+  margin: 0px;
+  font-size: 15px;
+  color: #333333;
+  padding: 0px;
+
 }
 .reservation-vehicle{
   display: flex;

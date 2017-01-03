@@ -17,11 +17,11 @@ import ServiceCategorys from './reservation/ServiceCategorys';
 import OwnerReservations from './reservation/OwnerReservations';
 import ReservationDetail from './reservation/ReservationDetail';
 import OrderNoComplete from './order/OrderNoComplete';
-import OrderDetails from  './order/OrderDetails'
+import OrderDetails from  './order/OrderDetails';
+import OrderReview from './order/OrderReview';
 const routes = (
   <Router history={hashHistory}>
-    <Route path="/owner/merchants" component={Merchants}>
-      </Route>
+    <Route path="/owner/merchants" component={Merchants}/>
     <Route path='/owner/login' component={Login}/>
     <Route path="/owner/articles" component={Articles}/>
     <Route path="/owner/serviceShop" component={ServiceShop}/>
@@ -34,10 +34,18 @@ const routes = (
     <Route path='/owner/reservation/details' component={ReservationDetail}/>
     <Route path='/owner/order/nocomplete' component={OrderNoComplete}/>
     <Route path='/owner/order/details' component={OrderDetails}/>
-
+    <Route path='/owner/order/review' component={OrderReview}/>
   </Router>
 );
 
 document.addEventListener('DOMContentLoaded', () => {
+  // var body = $('root');
+  // document.title = 'the title you want to set';
+  // var iframe = $("<iframe style='display:none;'></iframe>");
+  // iframe.on('load',function() {
+  //   setTimeout(function() {
+  //     iframe.off('load').remove();
+  //   }, 0);
+  // }).appendTo($body);
   render(routes, document.getElementById('root'));
 });

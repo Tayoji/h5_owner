@@ -11,6 +11,7 @@ const minPostfix = isProd ? '.min' : '';
 const minify = isProd ? 'minimize' : '';
 const hash = '[hash:7]';
 
+
 const entry = './app/js/entry.js';
 const devEntry = [
   'webpack/hot/dev-server',
@@ -34,6 +35,8 @@ const basePlugins = [
     } : null,
   }),
 ];
+
+
 const envPlugins = isProd ? [
   new ExtractTextPlugin(`css/style.${hash}${minPostfix}.css`, {
     allChunks: true

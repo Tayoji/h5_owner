@@ -22,6 +22,7 @@ export default class OwnerReservations extends React.Component {
   }
 
   componentDidMount() {
+    Api.setTitle("我的预约");
     let userinfo = Api.fetctUserInfo();
     let self = this;
     if (userinfo) {

@@ -55,7 +55,7 @@ export default class Reservation extends React.Component {
   }
 
   componentDidMount() {
-    document.title = "预约";
+    Api.setTitle("预约")
     let vehicleinfo = window.sessionStorage.getItem('vehicleinfo');
     let servicecategorys = window.sessionStorage.getItem('servicecategorys');
     if (vehicleinfo) {
@@ -200,9 +200,8 @@ export default class Reservation extends React.Component {
     const {vehicleInfo, servicecategorys, datePickerModel, hourMinPicker, date, modalProps, vehicleName,VehicleNumberPreIsOpen} = this.state;
     return (<Container transition={this.state.transition}
                        scrollable
-                       className = "reservation-body"
     >
-      <Group noPadded>
+      <Group noPadded className = "reservation-group" >
         <VehicleNumberPre isOpen={VehicleNumberPreIsOpen} onSelect = {(e)=>{
             this.setState({
               vehicleName:e,
@@ -252,7 +251,7 @@ export default class Reservation extends React.Component {
           });
         }
         }/>
-        <List>
+        <List  className = "reservation-list">
           <List.Item title="车&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;辆" linkComponent={Link} className = "reservation-servicecategorys"
                      linkProps={{to: {pathname: '/owner/choosevehicle'}}}
                      after={vehicleInfo ? vehicleInfo.name : null}
@@ -261,11 +260,11 @@ export default class Reservation extends React.Component {
                      linkProps={{to: {pathname: '/owner/servicecategorys'}}}
                      after={servicecategorys.join(',')}
           />
-          <List.Item className="reservation-li" title="行驶里程" after={<input style={{borderStyle:"none"}} className="reservation-input" id="reservation-mileage"  placeholder="输入行驶里程"/>}/>
+          <List.Item className="reservation-li" title="行驶里程" after={<input type="tel" style={{borderStyle:"none"}} className="reservation-input" id="reservation-mileage"  placeholder="输入行驶里程"/>}/>
         </List>
       </Group>
       <Group noPadded>
-        <List>
+        <List className = "reservation-list">
           <List.Item title="车&nbsp;&nbsp;牌&nbsp;&nbsp;号"
                      after={<div className="reservation-vehicle">
                        <div className="reservation-vehicle-card" onClick={(e)=>{

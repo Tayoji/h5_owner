@@ -18,6 +18,7 @@ export default class ReservationDetail extends React.Component {
   }
 
   componentDidMount() {
+    Api.setTitle("预约详情");
     let self = this;
     Api.GET(Api.url(`/owner/reservation/${this.props.location.query.id}.jhtml`), null, (res) => {
       console.log(res);

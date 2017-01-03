@@ -125,10 +125,22 @@ function POST(url, data, success, fail) {
 function GET(url, data, success, fail) {
   request(url, "GET", data, success, fail);
 }
+function setTitle(title){
+  var $body = $('body');
+  document.title = title;
+  // hack在微信等webview中无法修改document.title的情况
+  var $iframe = $('<iframe src="/favicon.ico"></iframe>');
+  $iframe.on('load',function() {
+    setTimeout(function() {
+      $iframe.off('load').remove();
+    }, 0);
+  }).appendTo($body);
+}
 
 module.exports = {
   tokenUrl: tokenUrl,
   token: token,
+  setTitle:setTitle,
   appDownloadUrl:appDownloadUrl,
   saveUserInfo:saveUserInfo,
   fetctUserInfo:fetctUserInfo,

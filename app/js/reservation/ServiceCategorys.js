@@ -10,6 +10,7 @@ import{
   Button,
 } from 'amazeui-touch';
 import '../../style/servicecategorys.scss';
+var Api = require('../Tools/Api');
 const buttons = ["洗车","保养" ,"维修" ,"钣金喷漆" ,"美容装饰" ,"轮胎轮毂" ,"加装改装","道路救援"];
 export default class ServiceCategorys extends React.Component {
   constructor(props){
@@ -17,6 +18,10 @@ export default class ServiceCategorys extends React.Component {
     this.state = {
       servicecategorys:[],
     }
+  }
+  componentDidMount(){
+    Api.setTitle("选择服务项目");
+
   }
   render() {
     var servicecategorys = this.state.servicecategorys;

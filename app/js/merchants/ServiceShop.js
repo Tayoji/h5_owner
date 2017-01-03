@@ -42,11 +42,12 @@ export default class ServiceShop extends React.Component {
   }
 
   componentDidMount() {
+    Api.setTitle("商家详情")
     console.log(Api.fetctUserInfo());
     if (!this.state.data) {
       this.loadData();
     }
-    document.title = '商家详情';
+    // document.title = '商家详情';
     console.log(this.props.location.query)
 
   }
