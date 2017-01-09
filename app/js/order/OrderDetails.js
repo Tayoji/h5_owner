@@ -88,7 +88,7 @@ export default class OrderDetails extends React.Component {
 
   loadData() {
     let self = this;
-    Api.GET(`http://192.168.1.12:8080/api/owner/serviceOrder/${this.props.location.query.id}.jhtml`, null, (res) => {
+    Api.GET(Api.url(`/owner/serviceOrder/${this.props.location.query.id}.jhtml`), null, (res) => {
       console.log(res)
 
       if (res.success) {

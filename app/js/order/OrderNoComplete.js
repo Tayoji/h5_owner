@@ -61,7 +61,7 @@ export default class OrderNoComplete extends React.Component {
   loadData(callback) {
     if (this.ownerId) {
       let self = this;
-      Api.GET('http://192.168.1.12:8080/api/owner/serviceOrder/noComplete.jhtml', {
+      Api.GET(Api.url("/owner/serviceOrder/noComplete.jhtml"), {
         ownerId: this.ownerId,
         pageNo: this.pageNo
       }, (res) => {

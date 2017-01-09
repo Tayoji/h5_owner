@@ -152,7 +152,7 @@ export default class Reservation extends React.Component {
       }
     })
     let self = this;
-    Api.POST('http://192.168.1.12:8080/api/owner/reservation/create.jhtml', {
+    Api.POST(Api.url('/owner/reservation/create.jhtml'), {
       serviceShopId: this.props.location.query.serviceShopId,
       ownerId: Api.fetctUserInfo().ownerId,
       vehicleId: this.state.vehicleInfo.id,
@@ -242,7 +242,7 @@ export default class Reservation extends React.Component {
          小时 分钟 选择器
          */}
         <HourMinPicker {...hourMinPicker} onSelect={(e) => {
-          console.log(e);
+          console.log("最终时间",e);
           this.setState({
             date: e,
             hourMinPicker: {
@@ -279,7 +279,7 @@ export default class Reservation extends React.Component {
                      </div>}/>
           <List.Item title="到店时间"
                      linkComponent={Link}
-                     after={date ? <p className="reservation-date">{`${date.getFullYear()}-${date.getMonth() + 1}-${date.getDay() + 1} ${date.getHours() < 10 ? `0${date.getHours()}`: date.getHours()}:${date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes()}`}</p> : ''}
+                     after={date ? <p className="reservation-date">{`${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()} ${date.getHours() < 10 ? `0${date.getHours()}`: date.getHours()}:${date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes()}`}</p> : ''}
                      onClick={() => {
                        this.setState({
                          hourMinPicker: {

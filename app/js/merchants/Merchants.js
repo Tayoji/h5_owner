@@ -128,6 +128,7 @@ export default class Merchants extends React.Component {
       }
     });
 
+
   }
 
   componentWillUnmount() {
