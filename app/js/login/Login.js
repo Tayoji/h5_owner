@@ -142,11 +142,40 @@ export default class Login extends React.Component {
   }
 
   componentDidMount() {
-    if (Api.fetctUserInfo()){
-      window.location.hash = "/owner/merchants";
-    }
+    // if (Api.fetctUserInfo()){
+    //   window.location.hash = "/owner/merchants";
+    // }
+    // if (this.props.location.query.code){
+    //   $.ajax({
+    //     url: `https://api.weixin.qq.com/sns/oauth2/access_token?appid=wx46cc6cbc3eb19afe&secret=498bb1d201c2913efbf309b97d62423c&code=${this.props.location.query.code}&grant_type=authorization_code`,
+    //     // type: 'POST',
+    //     // async: true,
+    //     type:"get",
+    //     // dataType:"jsonp",
+    //     jsonp:"callback",
+    //     jsonpCallback:"success_jsonpCallback",
+    //     headers:{
+    //       "Access-Control-Allow-Origin":"http://weixin.xiucher.com",
+    //     },
+    //     success: function (res) {
+    //       alert(JSON.stringify(res));
+    //     },
+    //     error: function (e) {
+    //       alert(JSON.stringify(e));
+    //     },
+    //   })
+    // }else {
+    //   window.location = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx46cc6cbc3eb19afe&redirect_uri=http%3a%2f%2fweixin.xiucher.com%2fweixin_owner.html&response_type=code&scope=snsapi_base&state=123#wechat_redirect";
+    // }
 
-      // window.location = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx46cc6cbc3eb19afe&redirect_uri=http%3a%2f%2fxcr.bighongbao.com&response_type=code&scope=snsapi_base&state=123#wechat_redirect";
+
+  }
+  callback(res){
+    alert(JSON.stringify(res));
+
+  }
+  success_jsonpCallback(res){
+    alert(JSON.stringify(res));
 
   }
   componentWillUnmount(){

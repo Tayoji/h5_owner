@@ -5,7 +5,7 @@ var fetch = require('isomorphic-fetch');
 var Tools = require('./Tools')
 let isRelease = false;
 // https://192.168.1.17:9443  http://192.168.1.6:8000/api  http://192.168.1.15:8080/api
-let base = isRelease ? 'http://b2b.xiucher.com/api' : 'http://192.168.1.6:8000/api';
+let base = isRelease ? 'http://www.xiucher.com/api' : 'http://192.168.1.16:8080/api';
 
 function tokenUrl() {
   return `${base}/oauth/token?grant_type=client_credentials`;

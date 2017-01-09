@@ -39,13 +39,5 @@ const routes = (
 );
 
 document.addEventListener('DOMContentLoaded', () => {
-  // var body = $('root');
-  // document.title = 'the title you want to set';
-  // var iframe = $("<iframe style='display:none;'></iframe>");
-  // iframe.on('load',function() {
-  //   setTimeout(function() {
-  //     iframe.off('load').remove();
-  //   }, 0);
-  // }).appendTo($body);
   render(routes, document.getElementById('root'));
 });

@@ -25,7 +25,7 @@ const basePlugins = [
     }
   }),
   new HTMLWebpackPlugin({
-    title: 'Amaze UI Touch Starter Kit',
+    title: '修车人',
     template: 'app/index.html',
     // inject: false,
     prod: isProd,

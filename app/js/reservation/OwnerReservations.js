@@ -28,6 +28,7 @@ export default class OwnerReservations extends React.Component {
     if (userinfo) {
       Api.GET(Api.url(`/owner/reservation/${userinfo.ownerId}/ownerReservations.jhtml`), null, (res) => {
         if (res.success) {
+
           self.setState({
             reservationList: res.data.reservationList
           })
